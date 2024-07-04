@@ -69,10 +69,18 @@ public class Evento {
 	
 	
 	/*
-	 * METODO CHE CALCOLA IL TOTALE DEI POSTI ANCORA DISPONIBILI;
+	 * METODO CHE CALCOLA IL TOTALE DEI POSTI ANCORA DISPONIBILI DOPO LA FASE DI PRENOTAZIONE;
 	 */
-	public int seatsAvailable(){
+	public int seatsAvailableBooked(){
 		return this.seatsTotal - this.seatsTotalBooked;
+	}
+	
+	
+	/*
+	 * METODO CHE CALCOLA IL TOTALE DEI POSTI ANCORA DISPONIBILI DOPO LA FASE DI DISDETTA;
+	 */
+	public int seatsAvailableCancel(){
+		return this.seatsTotal ++;
 	}
 	
 	
@@ -89,34 +97,10 @@ public class Evento {
 	 */
 	public void disdici() {
 		
-		if(this.seatsTotalBooked > 0)
-			this.seatsTotalBooked ++;
-		else
-			System.out.println("- NON CI SONO PRENOTAZIONI");
-	}
-	
-	
-	
-	/*
-	 * METODO CHE CONTROLLA LA DISPONIBILITA' DELL'EVENTO;
-	 */
-	public boolean checkEvent() {
-		if(this.toCheckDate()) {
-			System.out.println("- FUORI PROGRAMMAZIONE");
-			return false;
-		}
-		else if(this.toCheckSeatsAvailable()) {
-			System.out.println("- POSTI NON DISPONIBILI");
-			return false;
-		}
-		else
-			return true;
-		
-		
-	}
-	
+		if(this.seatsTotalBooked > 0) 
+			this.seatsTotalBooked --;
 
-	
+	}
 	
 	
 	/*
@@ -133,7 +117,7 @@ public class Evento {
 		todayDate.set(Calendar.SECOND, 0);
 		todayDate.set(Calendar.MILLISECOND, 0);
 		
-		if(todayDate.after(this.date) || todayDate.equals(this.date))
+		if(todayDate.after(this.date))
 			return true;
 		
 		return false;
@@ -159,7 +143,7 @@ public class Evento {
 	 * METODO CHE CONTROLLA IL TOTALE DEI POSTI DISPONIBILI;
 	 */
 	public boolean toCheckSeatsAvailable() {
-		if(this.seatsAvailable() < 0)
+		if(this.seatsAvailableBooked() < 0)
 			return true;
 		
 		return false;
@@ -168,7 +152,7 @@ public class Evento {
 	
 	@Override
 	public String toString() {
-		return "- TITOLO ---> " + this.title + "\n- DATA ---> " + this.date;
+		return "- TITOLO ---> " + this.title + "\n- DATA ---> " + this.dataBeautifier();
 	}
 	
 }
