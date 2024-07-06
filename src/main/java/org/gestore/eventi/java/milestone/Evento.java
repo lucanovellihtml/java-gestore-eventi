@@ -22,7 +22,7 @@ public class Evento {
 	public Evento(String title, Calendar date, int seatsTotal) {
 		this.title = title;
 		this.date = date;
-		this.seatsTotal = seatsTotal;
+		this.seatsTotal = seatsTotal;		
 		this.seatsTotalBooked = 0;
 	}
 
@@ -77,15 +77,8 @@ public class Evento {
 	
 	
 	/*
-	 * METODO CHE CALCOLA IL TOTALE DEI POSTI ANCORA DISPONIBILI DOPO LA FASE DI DISDETTA;
-	 */
-	public int seatsAvailableCancel(){
-		return this.seatsTotal ++;
-	}
-	
-	
-	/*
-	 * PRENOTA
+	 * PRENOTA;
+	 * INCREMENTO LA VARIABILE D'INSTANZA DI UNO, OGNI VOLTA CHE VIENE INVOCATO IL METODO;
 	 */
 	public void prenota() {
 		this.seatsTotalBooked ++;
@@ -93,7 +86,8 @@ public class Evento {
 	
 	
 	/*
-	 * DISDICI
+	 * DISDICI;
+	 * DECREMENTO LA VARIABILE D'INSTANZA DI UNO, OGNI VOLTA CHE VIENE INVOCATO IL METODO;
 	 */
 	public void disdici() {
 		
@@ -136,23 +130,11 @@ public class Evento {
 		
 		return dateBeautifier;
 	}
-	
-	
-	
-	/*
-	 * METODO CHE CONTROLLA IL TOTALE DEI POSTI DISPONIBILI;
-	 */
-	public boolean toCheckSeatsAvailable() {
-		if(this.seatsAvailableBooked() < 0)
-			return true;
-		
-		return false;
-	}
-	
+
 	
 	@Override
 	public String toString() {
-		return "- TITOLO ---> " + this.title + "\n- DATA ---> " + this.dataBeautifier();
+		return "- TITOLO ---> " + this.title + "\n- DATA ---> " + this.dataBeautifier() + "\n";
 	}
 	
 }
