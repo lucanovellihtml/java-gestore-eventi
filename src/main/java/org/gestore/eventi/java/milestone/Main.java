@@ -25,8 +25,6 @@ public class Main {
 			boolean flagValidationDate = false;
 			
 			do {
-				
-				while(flagValidationDate != true) {
 					
 					try {
 						
@@ -54,12 +52,9 @@ public class Main {
 						System.out.print("- INSERISCI UNA DATA VALIDA!!! \n");
 				}
 			
-					
-			}
-			}while(flagValidationDate != true); {
+			}while(flagValidationDate != true);
 				System.out.print("- DATA INSERITA CORRETTAMENTE \n");
-			}
-			
+		
 		
 			//INPUT POSTI TOTALI EVENTO;
 			System.out.println("- INSERISCI I POSTI TOTALI DEL NUOVO EVENTO: ");
