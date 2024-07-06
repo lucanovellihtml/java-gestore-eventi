@@ -104,8 +104,7 @@ public class Main {
 							System.out.println("- L'EVENTO DISPONIBILE");
 							
 							//CONTROLLO POSTI DISPONIBILI;
-							if(!e.toCheckSeatsAvailable()) {
-								System.out.println("- POSTI DISPONIBILI ---> " + e.seatsAvailableBooked() + "\n");
+							if(e.seatsAvailableBooked() > 0) {
 								
 								Scanner inputBooked = new Scanner(System.in);
 								System.out.println("- INSERISCI QUANTE PRENOTAZIONI VUORI FARE: ");
@@ -114,15 +113,23 @@ public class Main {
 								//CONTROLLO SE LE PRENOTAZIONI NON SUPERINO IL NUMERO DEI POSTI RIMANENTI;
 								if(seatBooked <= e.seatsAvailableBooked() && seatBooked > -1) {
 								
-									for(int i = 0; i < seatBooked; i++) {
+									//INCREMENTO LA VARIABILE DEI POSTI PRENOTATI;
+									for(int i = 0; i < seatBooked; i++)
 										e.prenota();
-										e.seatsAvailableBooked();
-									}
-									System.out.println("- AGGIORNAMENTO EVENTO...\n");
+									
+									System.out.println("- AGGIORNAMENTO EVENTO...");
+									System.out.println("- TRANSAZIONE COMPLETATA\n");
 								}
 								else
 									System.out.println("- INSERISCI UN NUMERO DI PRENOTAZIONI VALIDO \n");
 								
+								/* 
+								 * STAMPA TITOLO;
+								 * DATA;
+								 * POSTI DISPONIBILI;
+								 * POSTI TOTALI;
+								 * POSTI PRENOTATI;
+								 */
 								System.out.println(e.toString());
 								System.out.println("- POSTI DISPONIBILI ---> " + e.seatsAvailableBooked());
 								System.out.println("- POSTI TOTALI ---> " + e.getSeatsTotal());
@@ -141,39 +148,41 @@ public class Main {
 						if(!e.toCheckDate()) {
 							System.out.println(e.toString());
 							System.out.println("- L'EVENTO DISPONIBILE");
+							System.out.println("- POSTI PRENOTATI ---> " + e.getSeatsTotalBooked() + "\n");
 							
-							//CONTROLLO POSTI DISPONIBILI;
-							if(!e.toCheckSeatsAvailable()) {
-								System.out.println("- POSTI PRENOTATI ---> " + e.getSeatsTotalBooked() + "\n");
+							//CONTROLLO SE ESISTONO PRENOTAZIONI;
+							if(e.getSeatsTotalBooked() > 0) {
 								
 								Scanner inputCancel = new Scanner(System.in);
 								System.out.println("- INSERISCI QUANTE PRENOTAZIONI VUORI CANCELLARE: ");
 								int seatCancel = inputCancel.nextInt();
-								
-								//CONTROLLO SE LE CANCELLAZIONI NON SUPERINO IL NUMERO DEI POSTI DISPONIBILI
+																	
+								//CONTROLLO SE LE CANCELLAZIONI NON SUPERINO IL NUMERO DEI POSTI PRENOTATI
 								if(seatCancel <= e.getSeatsTotalBooked() && seatCancel > -1) {
 									
-									//CONTROLLO SE ESISTONO PRENOTAZIONI;
-									if(e.getSeatsTotalBooked() > 0) {
-										for(int i = 0; i < seatCancel; i++) 
-											e.disdici();
-										
-										System.out.println("- AGGIORNAMENTO EVENTO...\n");
-									}
-									else
-										System.out.println("- NON CI SONO PRENOTAZIONI DISPONIBILI \n");
+									for(int i = 0; i < seatCancel; i++) 
+										e.disdici();
+									
+									System.out.println("- AGGIORNAMENTO EVENTO...");
+									System.out.println("- TRANSAZIONE COMPLETATA\n");
 									
 								}else
 									System.out.println("- INSERISCI UN NUMERO DI CANCELLAZIONE VALIDO \n");
-								
-	
+						
+								/* 
+								 * STAMPA TITOLO;
+								 * DATA;
+								 * POSTI DISPONIBILI;
+								 * POSTI TOTALI;
+								 * POSTI PRENOTATI;
+								 */
 								System.out.println(e.toString());
 								System.out.println("- POSTI DISPONIBILI ---> " + e.seatsAvailableBooked());
 								System.out.println("- POSTI TOTALI ---> " + e.getSeatsTotal());
 								System.out.println("- POSTI PRENOTATI ---> " + e.getSeatsTotalBooked() + "\n");
 							}
 							else
-								System.out.println("- POSTI NON DISPONIBILI \n");
+								System.out.println("- NON CI SONO PRENOTAZIONI DISPONIBILI \n");
 						}
 						else
 							System.out.println("- L'EVENTO FUORI PROGRAMMAZIONE \n");
