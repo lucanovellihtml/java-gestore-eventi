@@ -13,9 +13,9 @@ public class Evento {
 	 * SEATSTOTAL = CAPIENZA TOTALE DEI POSTI DELL'EVENTO;
 	 * SEATSTOTALBOOKED = TOTALE DEI POSTI PRENOTATI;
 	 */
-	private String title;
-	private Calendar date;
-	private int seatsTotal, seatsTotalBooked;
+	protected String title;
+	protected Calendar date;
+	protected int seatsTotal, seatsTotalBooked;
 	
 	
 	// COSTRUTTORE;
