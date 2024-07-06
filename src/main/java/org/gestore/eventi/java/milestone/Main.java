@@ -12,16 +12,25 @@ public class Main {
 
 	public static void main(String[] args) {
 		
+			//PARAMETRI OGGETTO EVENTO
+			Calendar dateEvent = new GregorianCalendar();
+			int seat;
+			String title;
+			
+			
 			//INPUT PER INSERIRE NUOVO PARAMETRO;
 			Scanner inputEvent = new Scanner(System.in);
 			
+			
 			//INPUT TITOLO EVENTO;
 			System.out.println("- INSERISCI IL TITOLO DEL NUOVO EVENTO: ");
-			String title = inputEvent.nextLine();
+			title = inputEvent.nextLine();
+				
 			
-			
-			//VERIFICA DELLA VALIDITA' DEGLI INPUT DATA
-			Calendar dateEvent = new GregorianCalendar();
+			/*
+			 * VERIFICA DELLA VALIDITA' DEGLI INPUT DATA;
+			 * INPUT DATA EVENTO;		
+			 */
 			boolean flagValidationDate = false;
 			
 			do {
@@ -49,18 +58,27 @@ public class Main {
 						
 					}catch(ArrayIndexOutOfBoundsException | IllegalArgumentException error) {
 						flagValidationDate = false;	
-						System.out.print("- INSERISCI UNA DATA VALIDA!!! \n");
+						System.out.println("- INSERISCI UNA DATA VALIDA!!! \n");
 				}
 			
 			}while(flagValidationDate != true);
-				System.out.print("- DATA INSERITA CORRETTAMENTE \n");
+				System.out.println("- DATA INSERITA CORRETTAMENTE \n");
 		
-		
-			//INPUT POSTI TOTALI EVENTO;
-			System.out.println("- INSERISCI I POSTI TOTALI DEL NUOVO EVENTO: ");
-			int seat = inputEvent.nextInt();
 			
-		while(flagValidationDate) {	
+			/*
+			 * VERIFICA DELLA VALIDITA' DELL'INPUT POSTI TOTALI;
+			 * INPUT POSTI TOTALI EVENTO;	
+			 */		
+			do {
+				
+				System.out.println("- INSERISCI IL NUMERO DEI POSTI TOTALI VALIDO!!! \n");
+				System.out.println("- INSERISCI I POSTI TOTALI DEL NUOVO EVENTO: ");
+				seat = inputEvent.nextInt();
+				
+			}while(seat < 0);
+				System.out.println("- INPUT POSTI TOTALI INSERITO CORRETTAMENTE \n");
+			
+				
 			//CREAZIONE OGGETTO EVENTO
 			System.out.println("- INSERIMENTO DELL'EVENTO AVVENUTO CORRETTAMENTE \n");
 			Evento e = new Evento(title, dateEvent, seat);
@@ -70,6 +88,7 @@ public class Main {
 			//DATA GIORNALIERA;
 			dataTodayBeautifier();
 		
+			
 			//MENU'
 			int chooseInput;
 			do {
@@ -175,7 +194,6 @@ public class Main {
 				}
 			}while(chooseInput != 3);
 
-	}
 	}	
 	
 
