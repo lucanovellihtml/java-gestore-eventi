@@ -6,6 +6,8 @@ import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.Scanner;
 
+import javax.swing.event.ListDataEvent;
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -20,40 +22,56 @@ public class Main {
 			
 			//VERIFICA DELLA VALIDITA' DEGLI INPUT DATA
 			Calendar dateEvent = new GregorianCalendar();
+			boolean flagValidationDate = false;
+			
 			do {
 				
-			 try {	
-				dateEvent.setLenient(false);
-				//INPUT GIORNO EVENTO;
-				System.out.println("- INSERISCI IL GIORNO DEL NUOVO EVENTO: ");
-				int day = inputEvent.nextInt();
-				
-				//INPUT MESE EVENTO;
-				System.out.println("- INSERISCI IL MESE DEL NUOVO EVENTO: ");
-				int month = inputEvent.nextInt();
-				
-				//INPUT ANNO EVENTO
-				System.out.println("- INSERISCI L'ANNO DEL NUOVO EVENTO: ");
-				int year = inputEvent.nextInt();
-				
-				dateEvent.set(year, month, day);
-				
-			 }catch( )
-				
-			}while(dateEvent.getTime());
+				while(flagValidationDate != true) {
+					
+					try {
+						
+						flagValidationDate = true;
+						//NON ACCETTA VALORI DEL GIORNO E MESE NON ESISTENTI NEL CALENDARIO;
+						dateEvent.setLenient(false);
+						
+						//INPUT GIORNO EVENTO;
+						System.out.println("- INSERISCI IL GIORNO DEL NUOVO EVENTO: ");
+						int day = inputEvent.nextInt();
+						
+						//INPUT MESE EVENTO;
+						System.out.println("- INSERISCI IL MESE DEL NUOVO EVENTO: ");
+						int month = inputEvent.nextInt();
+						
+						//INPUT ANNO EVENTO
+						System.out.println("- INSERISCI L'ANNO DEL NUOVO EVENTO: ");
+						int year = inputEvent.nextInt();
+						
+						dateEvent.set(year, month, day);
+						dateEvent.getTime();
+						
+					}catch(ArrayIndexOutOfBoundsException | IllegalArgumentException error) {
+						flagValidationDate = false;	
+						System.out.print("- INSERISCI UNA DATA VALIDA!!! \n");
+				}
 			
+					
+			}
+			}while(flagValidationDate != true); {
+				System.out.print("- DATA INSERITA CORRETTAMENTE \n");
+			}
+			
+		
 			//INPUT POSTI TOTALI EVENTO;
 			System.out.println("- INSERISCI I POSTI TOTALI DEL NUOVO EVENTO: ");
 			int seat = inputEvent.nextInt();
-		
-
 			
-		while(day > 0 && day < 32 && month > 0 && month < 12 && year > 0 && seat > 0) {
-			
+		while(flagValidationDate) {	
+			//CREAZIONE OGGETTO EVENTO
 			System.out.println("- INSERIMENTO DELL'EVENTO AVVENUTO CORRETTAMENTE \n");
-			
-			Evento e = new Evento(title, new GregorianCalendar(day, month, year), seat);
+			Evento e = new Evento(title, dateEvent, seat);
+			System.out.print(e.toString());
 	
+			
 			//DATA GIORNALIERA;
 			dataTodayBeautifier();
 		
@@ -151,22 +169,22 @@ public class Main {
 						
 					case 3:  
 						System.out.println("- ARRIVEDERCI");
+						System.out.println("- CHIUSURA PROGRAMMA...");
+						System.out.println("- PROGRAMMA CHIUSO");
 						break;
 						
 					 default:
-						 System.out.println("- INSERISCI UNA SCELTA VALIDA!!! \n");
+						 System.out.println("- INSERISCI UNA SCELTA VALIDA!!!");
+						 System.out.println("- RITENTA!!! \n");
 						 break;
 				}
 			}while(chooseInput != 3);
 
-		}
-		System.out.println("- INSERIMENTO DEI DATI NON VALIDO!!!");
-		System.out.println("- CHIUSRA PROGRAMMA...");
-		System.out.println("- PROGRAMMA CHIUSO");
-		System.out.println("- RITENTA");
 	}
+	}	
 	
-	
+
+
 	/*
 	 * METODO CHE RESTITUISCE LA DATA GIORNALIERA FORMATTANDO IL TEMPO;
 	 */
@@ -186,11 +204,5 @@ public class Main {
 	}
 
 		
-	/*
-	 * METODO CHE CONTROLLA LA VALIDITA' DELLA DATA INSERITA DALL'UTENTE;
-	 */
-	boolean dataCheckInput() {
-		
-	}
 }
 
