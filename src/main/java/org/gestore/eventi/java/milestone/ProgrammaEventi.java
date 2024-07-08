@@ -66,8 +66,33 @@ public class ProgrammaEventi {
 	 * METODO CHE SVUOLA LA LISTA;
 	 */
 	public void emptyList() {
-		System.out.println("- STO SVUOTANDO LA LISTA...");
-		this.listEvents.clear();
-		System.out.println("- LISTA SVUOTATA CORRETTAMENTE");
+		
+		if(this.getLengthEvents() > 0) {
+			System.out.println("- STO SVUOTANDO LA LISTA...");
+			this.listEvents.clear();
+			System.out.println("- LISTA SVUOTATA CORRETTAMENTE");
+		}
+		else
+			System.out.println("- LISTA VUOTA, NON E' POSSIBILE SVUOTARLA");
 	}
+	
+	
+	/*
+	 * METODO CHE RESTITUISCE IL SINGOLO OGGETTO;
+	 */
+	public Evento getEvent(int index) {
+		return this.listEvents.get(index);
+	}
+	
+	
+	/*
+	 * METODO CHE RESTITUISCE LA LISTA;
+	 */
+	public void getListEvent() {
+		for(int i = 0; i < this.listEvents.size(); i++) {
+			System.out.println("- SCELTA ---> " + i + "\n - EVENTO ---> " + this.listEvents.get(i) + "\n");
+		}		
+	}
+	
+	
 }
