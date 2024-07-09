@@ -26,7 +26,6 @@ public class Main {
 		//MENU'
 		do {
 			
-			System.out.println("-*-*-*-*- BENVENUTO -*-*-*-*-");
 			System.out.println("- INSERISCI [1]PRENOTA - [2]DISDICI - [3]ESCI - [4]AGGIUNGI: ");
 			chooseInput = choose.nextInt();
 			
@@ -387,7 +386,7 @@ public class Main {
 			System.out.println("- DATA INSERITA CORRETTAMENTE \n");
 			
 		ArrayList<Evento> listEventFiltr = listEvent.getEventsCalendar(dateEventFiltr);
-		System.out.println("- LISTA FILTRATA ---> \n" + listEventFiltr);
+		System.out.println("- LISTA FILTRATA ---> \n" + listEventFiltr.toString());
 	}
 
 }
