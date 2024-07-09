@@ -13,6 +13,7 @@ public class Main {
 		Scanner choose = new Scanner(System.in);
 		Scanner chooseTitleList = new Scanner(System.in);
 		System.out.println("-*-*-*-*- BENVENUTO -*-*-*-*-\n");
+		dataTodayBeautifier();
 		
 		//INIZIALIZZA VARIABILE LIST
 		System.out.println("- INSERISCI IL NOME DELLA LISTA: ");
@@ -64,54 +65,8 @@ public class Main {
 					
 					
 					case 2:
-						System.out.println("-*-*-*-*- HAI SELEZIONATO LISTA FILTRATA -*-*-*-*-\n");
-						
-						/*
-						 * VERIFICA DELLA VALIDITA' DEGLI INPUT DATA;
-						 * INPUT DATA EVENTO;		
-						 */
-						boolean flagValidationDateFiltr = false;
-						Calendar dateEventFiltr = new GregorianCalendar();
-						
-						
-						//INPUT PER INSERIRE NUOVO PARAMETRO;
-						Scanner inputEventFiltr = new Scanner(System.in);
-						
-						do {
-								
-								try {
-									
-									flagValidationDateFiltr = true;
-									//NON ACCETTA VALORI DEL GIORNO E MESE NON ESISTENTI NEL CALENDARIO;
-									dateEventFiltr.setLenient(false);
-									
-									//INPUT GIORNO EVENTO;
-									System.out.println("- INSERISCI IL GIORNO DEL NUOVO EVENTO: ");
-									int day = inputEventFiltr.nextInt();
-									
-									//INPUT MESE EVENTO;
-									System.out.println("- INSERISCI IL MESE DEL NUOVO EVENTO: ");
-									int month = inputEventFiltr.nextInt();
-									
-									//INPUT ANNO EVENTO
-									System.out.println("- INSERISCI L'ANNO DEL NUOVO EVENTO: ");
-									int year = inputEventFiltr.nextInt();
-									
-									dateEventFiltr.set(year, month, day);
-									dateEventFiltr.getTime();
-									
-								}catch(ArrayIndexOutOfBoundsException | IllegalArgumentException error) {
-									flagValidationDateFiltr = false;	
-									System.out.println("- INSERISCI UNA DATA VALIDA!!! \n");
-							}
-						
-						}while(flagValidationDateFiltr != true);
-							System.out.println("- DATA INSERITA CORRETTAMENTE \n");
-							
-						ArrayList<Evento> listEventFiltr = listEvent.getEventsCalendar(dateEventFiltr);
-						System.out.println("- LISTA FILTRATA ---> \n" + listEventFiltr);	
-						
-					break;
+						checkFiltered(listEvent);
+						break;
 					
 					
 					case 3:
@@ -172,7 +127,7 @@ public class Main {
 		String month = todayDate.getDisplayName(Calendar.MONTH, Calendar.LONG_FORMAT, Locale.ITALY);
 		int year = todayDate.get(Calendar.YEAR);
 		String dateBeautifier = day + " " + month + " " + year;
-		System.out.println("- DATA DI OGGI ---> " + dateBeautifier);
+		System.out.println("- DATA DI OGGI ---> " + dateBeautifier + "\n");
 	}
 	
 	
@@ -434,4 +389,5 @@ public class Main {
 		ArrayList<Evento> listEventFiltr = listEvent.getEventsCalendar(dateEventFiltr);
 		System.out.println("- LISTA FILTRATA ---> \n" + listEventFiltr);
 	}
+
 }
