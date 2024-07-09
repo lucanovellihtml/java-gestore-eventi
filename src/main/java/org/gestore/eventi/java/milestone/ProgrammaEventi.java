@@ -1,6 +1,7 @@
 package org.gestore.eventi.java.milestone;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 
 public class ProgrammaEventi {
@@ -92,6 +93,12 @@ public class ProgrammaEventi {
 		for(int i = 0; i < this.listEvents.size(); i++) {
 			System.out.println("- SCELTA ---> " + i + "\n - EVENTO ---> " + this.listEvents.get(i) + "\n");
 		}		
+	}
+	
+	
+	@Override
+	public String toString() {
+		return Arrays.toString(this.listEvents.toArray());
 	}
 	
 	
