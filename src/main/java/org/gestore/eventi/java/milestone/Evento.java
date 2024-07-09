@@ -21,7 +21,14 @@ public class Evento {
 	// COSTRUTTORE;
 	public Evento(String title, Calendar date, int seatsTotal) {
 		this.title = title;
+		
+		//IMPOSTAZIONI DATA DEFAULT;
+		date.set(Calendar.HOUR_OF_DAY, 0);
+		date.set(Calendar.MINUTE, 0);
+		date.set(Calendar.SECOND, 0);
+		date.set(Calendar.MILLISECOND, 0);
 		this.date = date;
+		
 		this.seatsTotal = seatsTotal;		
 		this.seatsTotalBooked = 0;
 	}
@@ -105,11 +112,6 @@ public class Evento {
 	public boolean toCheckDate() { 
 		
 		Calendar todayDate = Calendar.getInstance();
-		
-		todayDate.set(Calendar.HOUR_OF_DAY, 0);
-		todayDate.set(Calendar.MINUTE, 0);
-		todayDate.set(Calendar.SECOND, 0);
-		todayDate.set(Calendar.MILLISECOND, 0);
 		
 		if(todayDate.after(this.date))
 			return true;
