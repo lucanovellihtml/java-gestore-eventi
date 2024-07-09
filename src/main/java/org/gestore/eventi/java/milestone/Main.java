@@ -32,67 +32,12 @@ public class Main {
 			
 			switch(chooseInput) {
 			case 1:
-				
+				checkPrenota(listEvent, choose);
 				break;
 				
 				
 			case 2:
-				System.out.println("-*-*-*-*- HAI SELEZIONATO DISDICI -*-*-*-*-");
-
-				listEvent.getListEvent();
-				
-				
-				//CHECK LISTA POPOLATA
-				if(listEvent.getLengthEvents() > 0) {
-				
-					System.out.println("- INSERISCI LA POSIZIONE DELL'EVENTO: ");
-					int chooseInputEventListCancel = choose.nextInt();
-					
-					//CONTROLLO DATA EVENTO;
-					if(!listEvent.getEvent(chooseInputEventListCancel).toCheckDate()) {
-						System.out.println(listEvent.getEvent(chooseInputEventListCancel).toString());
-						System.out.println("- L'EVENTO DISPONIBILE");
-						System.out.println("- POSTI PRENOTATI ---> " + listEvent.getEvent(chooseInputEventListCancel).getSeatsTotalBooked() + "\n");
-						
-						//CONTROLLO SE ESISTONO PRENOTAZIONI;
-						if(listEvent.getEvent(chooseInputEventListCancel).getSeatsTotalBooked() > 0) {
-							
-							Scanner inputCancel = new Scanner(System.in);
-							System.out.println("- INSERISCI QUANTE PRENOTAZIONI VUORI CANCELLARE: ");
-							int seatCancel = inputCancel.nextInt();
-																
-							//CONTROLLO SE LE CANCELLAZIONI NON SUPERINO IL NUMERO DEI POSTI PRENOTATI
-							if(seatCancel <= listEvent.getEvent(chooseInputEventListCancel).getSeatsTotalBooked() && seatCancel > -1) {
-								
-								for(int i = 0; i < seatCancel; i++) 
-									listEvent.getEvent(chooseInputEventListCancel).disdici();
-								
-								System.out.println("- AGGIORNAMENTO EVENTO...");
-								System.out.println("- TRANSAZIONE COMPLETATA\n");
-								
-							}else
-								System.out.println("- INSERISCI UN NUMERO DI CANCELLAZIONE VALIDO \n");
-					
-							/* 
-							 * STAMPA TITOLO;
-							 * DATA;
-							 * POSTI DISPONIBILI;
-							 * POSTI TOTALI;
-							 * POSTI PRENOTATI;
-							 */
-							System.out.println(listEvent.getEvent(chooseInputEventListCancel).toString());
-							System.out.println("- POSTI DISPONIBILI ---> " + listEvent.getEvent(chooseInputEventListCancel).seatsAvailableBooked());
-							System.out.println("- POSTI TOTALI ---> " + listEvent.getEvent(chooseInputEventListCancel).getSeatsTotal());
-							System.out.println("- POSTI PRENOTATI ---> " + listEvent.getEvent(chooseInputEventListCancel).getSeatsTotalBooked() + "\n");
-						}
-						else
-							System.out.println("- NON CI SONO PRENOTAZIONI DISPONIBILI \n");
-					}
-					else
-						System.out.println("- L'EVENTO FUORI PROGRAMMAZIONE \n");
-				}
-				else
-					System.out.println("- NON PUOI DISDIRE PERCHE' LA LISTA E' VUOTA \n");
+				checkCancellazione(listEvent, choose);
 				break;
 				
 				
@@ -368,4 +313,65 @@ public class Main {
 	}
 	
 	
+	/*
+	 * METODO CHE CONTROLLA LA LOGICA SUL CASE DI CANCELLAZIONE;
+	 */
+	static void checkCancellazione(ProgrammaEventi listEvent, Scanner choose) {
+		System.out.println("-*-*-*-*- HAI SELEZIONATO DISDICI -*-*-*-*-");
+
+		listEvent.getListEvent();
+		
+		
+		//CHECK LISTA POPOLATA
+		if(listEvent.getLengthEvents() > 0) {
+		
+			System.out.println("- INSERISCI LA POSIZIONE DELL'EVENTO: ");
+			int chooseInputEventListCancel = choose.nextInt();
+			
+			//CONTROLLO DATA EVENTO;
+			if(!listEvent.getEvent(chooseInputEventListCancel).toCheckDate()) {
+				System.out.println(listEvent.getEvent(chooseInputEventListCancel).toString());
+				System.out.println("- L'EVENTO DISPONIBILE");
+				System.out.println("- POSTI PRENOTATI ---> " + listEvent.getEvent(chooseInputEventListCancel).getSeatsTotalBooked() + "\n");
+				
+				//CONTROLLO SE ESISTONO PRENOTAZIONI;
+				if(listEvent.getEvent(chooseInputEventListCancel).getSeatsTotalBooked() > 0) {
+					
+					Scanner inputCancel = new Scanner(System.in);
+					System.out.println("- INSERISCI QUANTE PRENOTAZIONI VUORI CANCELLARE: ");
+					int seatCancel = inputCancel.nextInt();
+														
+					//CONTROLLO SE LE CANCELLAZIONI NON SUPERINO IL NUMERO DEI POSTI PRENOTATI
+					if(seatCancel <= listEvent.getEvent(chooseInputEventListCancel).getSeatsTotalBooked() && seatCancel > -1) {
+						
+						for(int i = 0; i < seatCancel; i++) 
+							listEvent.getEvent(chooseInputEventListCancel).disdici();
+						
+						System.out.println("- AGGIORNAMENTO EVENTO...");
+						System.out.println("- TRANSAZIONE COMPLETATA\n");
+						
+					}else
+						System.out.println("- INSERISCI UN NUMERO DI CANCELLAZIONE VALIDO \n");
+			
+					/* 
+					 * STAMPA TITOLO;
+					 * DATA;
+					 * POSTI DISPONIBILI;
+					 * POSTI TOTALI;
+					 * POSTI PRENOTATI;
+					 */
+					System.out.println(listEvent.getEvent(chooseInputEventListCancel).toString());
+					System.out.println("- POSTI DISPONIBILI ---> " + listEvent.getEvent(chooseInputEventListCancel).seatsAvailableBooked());
+					System.out.println("- POSTI TOTALI ---> " + listEvent.getEvent(chooseInputEventListCancel).getSeatsTotal());
+					System.out.println("- POSTI PRENOTATI ---> " + listEvent.getEvent(chooseInputEventListCancel).getSeatsTotalBooked() + "\n");
+				}
+				else
+					System.out.println("- NON CI SONO PRENOTAZIONI DISPONIBILI \n");
+			}
+			else
+				System.out.println("- L'EVENTO FUORI PROGRAMMAZIONE \n");
+		}
+		else
+			System.out.println("- NON PUOI DISDIRE PERCHE' LA LISTA E' VUOTA \n");
+	}
 }
