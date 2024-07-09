@@ -32,62 +32,7 @@ public class Main {
 			
 			switch(chooseInput) {
 			case 1:
-				System.out.println("-*-*-*-*- HAI SELEZIONATO PRENOTA -*-*-*-*-");
 				
-				listEvent.getListEvent();
-				
-		
-				//CHECK LISTA POPOLATA
-				if(listEvent.getLengthEvents() > 0) {
-					
-					System.out.println("- INSERISCI LA POSIZIONE DELL'EVENTO: ");
-					int chooseInputEventListBooked = choose.nextInt();
-					
-					//CONTROLLO DATA EVENTO;
-					if(!listEvent.getEvent(chooseInputEventListBooked).toCheckDate()) {
-						System.out.println(listEvent.getEvent(chooseInputEventListBooked).toString());
-						System.out.println("- L'EVENTO DISPONIBILE");
-						
-						//CONTROLLO POSTI DISPONIBILI;
-						if(listEvent.getEvent(chooseInputEventListBooked).seatsAvailableBooked() > 0) {
-							
-							Scanner inputBooked = new Scanner(System.in);
-							System.out.println("- INSERISCI QUANTE PRENOTAZIONI VUORI FARE: ");
-							int seatBooked = inputBooked.nextInt();
-							
-							//CONTROLLO SE LE PRENOTAZIONI NON SUPERINO IL NUMERO DEI POSTI RIMANENTI;
-							if(seatBooked <= listEvent.getEvent(chooseInputEventListBooked).seatsAvailableBooked() && seatBooked > -1) {
-							
-								//INCREMENTO LA VARIABILE DEI POSTI PRENOTATI;
-								for(int i = 0; i < seatBooked; i++)
-									listEvent.getEvent(chooseInputEventListBooked).prenota();
-								
-								System.out.println("- AGGIORNAMENTO EVENTO...");
-								System.out.println("- TRANSAZIONE COMPLETATA\n");
-							}
-							else
-								System.out.println("- INSERISCI UN NUMERO DI PRENOTAZIONI VALIDO \n");
-							
-							/* 
-							 * STAMPA TITOLO;
-							 * DATA;
-							 * POSTI DISPONIBILI;
-							 * POSTI TOTALI;
-							 * POSTI PRENOTATI;
-							 */
-							System.out.println(listEvent.getEvent(chooseInputEventListBooked).toString());
-							System.out.println("- POSTI DISPONIBILI ---> " + listEvent.getEvent(chooseInputEventListBooked).seatsAvailableBooked());
-							System.out.println("- POSTI TOTALI ---> " + listEvent.getEvent(chooseInputEventListBooked).getSeatsTotal());
-							System.out.println("- POSTI PRENOTATI ---> " + listEvent.getEvent(chooseInputEventListBooked).getSeatsTotalBooked() + "\n");
-						}
-						else
-							System.out.println("- NON CI SONO POSTI DISPONIBILI \n");
-					}
-					else
-						System.out.println("- L'EVENTO FUORI PROGRAMMAZIONE \n");
-				}
-				else
-					System.out.println("- NON PUOI PRENOTARE PERCHE' LA LISTA E' VUOTA \n");
 				break;
 				
 				
@@ -358,5 +303,69 @@ public class Main {
 		String dateBeautifier = day + " " + month + " " + year;
 		System.out.println("- DATA DI OGGI ---> " + dateBeautifier);
 	}
+	
+	
+	/*
+	 * METODO CHE CONTROLLA LA LOGICA SUL CASE DI PRENOTAZIONE;
+	 */
+	static void checkPrenota(ProgrammaEventi listEvent, Scanner choose) {
+		System.out.println("-*-*-*-*- HAI SELEZIONATO PRENOTA -*-*-*-*-");
+		
+		listEvent.getListEvent();
+		
+
+		//CHECK LISTA POPOLATA
+		if(listEvent.getLengthEvents() > 0) {
+			
+			System.out.println("- INSERISCI LA POSIZIONE DELL'EVENTO: ");
+			int chooseInputEventListBooked = choose.nextInt();
+			
+			//CONTROLLO DATA EVENTO;
+			if(!listEvent.getEvent(chooseInputEventListBooked).toCheckDate()) {
+				System.out.println(listEvent.getEvent(chooseInputEventListBooked).toString());
+				System.out.println("- L'EVENTO DISPONIBILE");
+				
+				//CONTROLLO POSTI DISPONIBILI;
+				if(listEvent.getEvent(chooseInputEventListBooked).seatsAvailableBooked() > 0) {
+					
+					Scanner inputBooked = new Scanner(System.in);
+					System.out.println("- INSERISCI QUANTE PRENOTAZIONI VUORI FARE: ");
+					int seatBooked = inputBooked.nextInt();
+					
+					//CONTROLLO SE LE PRENOTAZIONI NON SUPERINO IL NUMERO DEI POSTI RIMANENTI;
+					if(seatBooked <= listEvent.getEvent(chooseInputEventListBooked).seatsAvailableBooked() && seatBooked > -1) {
+					
+						//INCREMENTO LA VARIABILE DEI POSTI PRENOTATI;
+						for(int i = 0; i < seatBooked; i++)
+							listEvent.getEvent(chooseInputEventListBooked).prenota();
+						
+						System.out.println("- AGGIORNAMENTO EVENTO...");
+						System.out.println("- TRANSAZIONE COMPLETATA\n");
+					}
+					else
+						System.out.println("- INSERISCI UN NUMERO DI PRENOTAZIONI VALIDO \n");
+					
+					/* 
+					 * STAMPA TITOLO;
+					 * DATA;
+					 * POSTI DISPONIBILI;
+					 * POSTI TOTALI;
+					 * POSTI PRENOTATI;
+					 */
+					System.out.println(listEvent.getEvent(chooseInputEventListBooked).toString());
+					System.out.println("- POSTI DISPONIBILI ---> " + listEvent.getEvent(chooseInputEventListBooked).seatsAvailableBooked());
+					System.out.println("- POSTI TOTALI ---> " + listEvent.getEvent(chooseInputEventListBooked).getSeatsTotal());
+					System.out.println("- POSTI PRENOTATI ---> " + listEvent.getEvent(chooseInputEventListBooked).getSeatsTotalBooked() + "\n");
+				}
+				else
+					System.out.println("- NON CI SONO POSTI DISPONIBILI \n");
+			}
+			else
+				System.out.println("- L'EVENTO FUORI PROGRAMMAZIONE \n");
+		}
+		else
+			System.out.println("- NON PUOI PRENOTARE PERCHE' LA LISTA E' VUOTA \n");
+	}
+	
 	
 }
