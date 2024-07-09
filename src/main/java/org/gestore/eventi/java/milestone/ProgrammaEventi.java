@@ -3,6 +3,7 @@ package org.gestore.eventi.java.milestone;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class ProgrammaEventi {
 
@@ -34,20 +35,32 @@ public class ProgrammaEventi {
 	
 	
 	/*
-	 * METODO CHE RESTITUISCE UNA LISTA CON TUTTIT GLI EVENTI PRESENTI IN UNA CERTA DATA;
+	 * METODO CHE RESTITUISCE UNA LISTA CON TUTTI GLI EVENTI PRESENTI IN UNA CERTA DATA;
 	 */
 	public ArrayList<Evento> getEventsCalendar(Calendar date){
 		
 		ArrayList<Evento> listEventsCalendar = new ArrayList<Evento>();
 		
+		date.set(Calendar.HOUR_OF_DAY, 0);
+		date.set(Calendar.MINUTE, 0);
+		date.set(Calendar.SECOND, 0);
+		date.set(Calendar.MILLISECOND, 0);
+		int day = date.get(Calendar.DATE);
+		String month = date.getDisplayName(Calendar.MONTH, Calendar.LONG_FORMAT, Locale.ITALY);
+		int year = date.get(Calendar.YEAR);
+		String dateBeautifierInput = day + " " + month + " " + year;
+		
+		System.out.println("- DATA FILTRAGGIO ---> " + dateBeautifierInput + "\n");
+		
 		for(Evento events : this.listEvents) {
 			System.out.println("- STO ANALIZZANDO L'EVENTO...");
+			System.out.println("- DATA EVENTO ---> " + events.dataBeautifier());
 			if(events.getDate().equals(date)) {
 				listEventsCalendar.add(events);
-				System.out.println("- L'EVENTO HA LA STESSA DATA RICHIESTA, EVENTO AGGIUNTO ALLA LISTA");
+				System.out.println("- L'EVENTO HA LA STESSA DATA RICHIESTA, EVENTO AGGIUNTO ALLA LISTA\n");
 			}
 			else
-				System.out.println("- L'EVENTO NON HA LA STESSA DATA RICHIESTA, EVENTO NON AGGIUNTO ALLA LISTA");
+				System.out.println("- L'EVENTO NON HA LA STESSA DATA RICHIESTA, EVENTO NON AGGIUNTO ALLA LISTA\n");
 		}
 		
 		return listEventsCalendar;
