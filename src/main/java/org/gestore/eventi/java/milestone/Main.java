@@ -59,82 +59,8 @@ public class Main {
 					
 					switch(chooseAddInput){
 					case 1: 
-						System.out.println("-*-*-*-*- HAI SELEZIONATO AGGIUNGI EVENTO -*-*-*-*-\n");
-						
-						//PARAMETRI OGGETTO EVENTO
-						Calendar dateEvent = new GregorianCalendar();
-						int seat;
-						String title;
-						
-						
-						//INPUT PER INSERIRE NUOVO PARAMETRO;
-						Scanner inputEvent = new Scanner(System.in);
-						
-						
-						//INPUT TITOLO EVENTO;
-						System.out.println("- INSERISCI IL TITOLO DEL NUOVO EVENTO: ");
-						title = inputEvent.nextLine();
-							
-						
-						/*
-						 * VERIFICA DELLA VALIDITA' DEGLI INPUT DATA;
-						 * INPUT DATA EVENTO;		
-						 */
-						boolean flagValidationDate = false;
-						
-						do {
-								
-								try {
-									
-									flagValidationDate = true;
-									//NON ACCETTA VALORI DEL GIORNO E MESE NON ESISTENTI NEL CALENDARIO;
-									dateEvent.setLenient(false);
-									
-									//INPUT GIORNO EVENTO;
-									System.out.println("- INSERISCI IL GIORNO DEL NUOVO EVENTO: ");
-									int day = inputEvent.nextInt();
-									
-									//INPUT MESE EVENTO;
-									System.out.println("- INSERISCI IL MESE DEL NUOVO EVENTO: ");
-									int month = inputEvent.nextInt();
-									
-									//INPUT ANNO EVENTO
-									System.out.println("- INSERISCI L'ANNO DEL NUOVO EVENTO: ");
-									int year = inputEvent.nextInt();
-									
-									dateEvent.set(year, month, day);
-									dateEvent.getTime();
-									
-								}catch(ArrayIndexOutOfBoundsException | IllegalArgumentException error) {
-									flagValidationDate = false;	
-									System.out.println("- INSERISCI UNA DATA VALIDA!!! \n");
-							}
-						
-						}while(flagValidationDate != true);
-							System.out.println("- DATA INSERITA CORRETTAMENTE \n");
-					
-						
-						/*
-						 * VERIFICA DELLA VALIDITA' DELL'INPUT POSTI TOTALI;
-						 * INPUT POSTI TOTALI EVENTO;	
-						 */		
-						do {
-							
-							System.out.println("- INSERISCI IL NUMERO DEI POSTI TOTALI VALIDO!!! \n");
-							System.out.println("- INSERISCI I POSTI TOTALI DEL NUOVO EVENTO: ");
-							seat = inputEvent.nextInt();
-							
-						}while(seat < 0);
-							System.out.println("- INPUT POSTI TOTALI INSERITO CORRETTAMENTE \n");
-						
-							
-						//CREAZIONE OGGETTO EVENTO
-						System.out.println("- INSERIMENTO DELL'EVENTO AVVENUTO CORRETTAMENTE \n");
-						Evento event = new Evento(title, dateEvent, seat);
-						System.out.print(event.toString());
-						listEvent.addEvent(new Evento(title, dateEvent, seat));
-					
-					break;
+						checkAdded(listEvent);
+					    break;
 					
 					
 					case 2:
@@ -373,5 +299,139 @@ public class Main {
 		}
 		else
 			System.out.println("- NON PUOI DISDIRE PERCHE' LA LISTA E' VUOTA \n");
+	}
+	
+	
+	/*
+	 * METODO CHE CONTROLLA LA LOGICA DI AGGIUNTA EVENTO;
+	 */
+	static void checkAdded(ProgrammaEventi listEvent) {
+		System.out.println("-*-*-*-*- HAI SELEZIONATO AGGIUNGI EVENTO -*-*-*-*-\n");
+		
+		//PARAMETRI OGGETTO EVENTO
+		Calendar dateEvent = new GregorianCalendar();
+		int seat;
+		String title;
+		
+		
+		//INPUT PER INSERIRE NUOVO PARAMETRO;
+		Scanner inputEvent = new Scanner(System.in);
+		
+		
+		//INPUT TITOLO EVENTO;
+		System.out.println("- INSERISCI IL TITOLO DEL NUOVO EVENTO: ");
+		title = inputEvent.nextLine();
+			
+		
+		/*
+		 * VERIFICA DELLA VALIDITA' DEGLI INPUT DATA;
+		 * INPUT DATA EVENTO;		
+		 */
+		boolean flagValidationDate = false;
+		
+		do {
+				
+				try {
+					
+					flagValidationDate = true;
+					//NON ACCETTA VALORI DEL GIORNO E MESE NON ESISTENTI NEL CALENDARIO;
+					dateEvent.setLenient(false);
+					
+					//INPUT GIORNO EVENTO;
+					System.out.println("- INSERISCI IL GIORNO DEL NUOVO EVENTO: ");
+					int day = inputEvent.nextInt();
+					
+					//INPUT MESE EVENTO;
+					System.out.println("- INSERISCI IL MESE DEL NUOVO EVENTO: ");
+					int month = inputEvent.nextInt();
+					
+					//INPUT ANNO EVENTO
+					System.out.println("- INSERISCI L'ANNO DEL NUOVO EVENTO: ");
+					int year = inputEvent.nextInt();
+					
+					dateEvent.set(year, month, day);
+					dateEvent.getTime();
+					
+				}catch(ArrayIndexOutOfBoundsException | IllegalArgumentException error) {
+					flagValidationDate = false;	
+					System.out.println("- INSERISCI UNA DATA VALIDA!!! \n");
+			}
+		
+		}while(flagValidationDate != true);
+			System.out.println("- DATA INSERITA CORRETTAMENTE \n");
+	
+		
+		/*
+		 * VERIFICA DELLA VALIDITA' DELL'INPUT POSTI TOTALI;
+		 * INPUT POSTI TOTALI EVENTO;	
+		 */		
+		do {
+			
+			System.out.println("- INSERISCI IL NUMERO DEI POSTI TOTALI VALIDO!!! \n");
+			System.out.println("- INSERISCI I POSTI TOTALI DEL NUOVO EVENTO: ");
+			seat = inputEvent.nextInt();
+			
+		}while(seat < 0);
+			System.out.println("- INPUT POSTI TOTALI INSERITO CORRETTAMENTE \n");
+		
+			
+		//CREAZIONE OGGETTO EVENTO
+		System.out.println("- INSERIMENTO DELL'EVENTO AVVENUTO CORRETTAMENTE \n");
+		Evento event = new Evento(title, dateEvent, seat);
+		System.out.print(event.toString());
+		listEvent.addEvent(new Evento(title, dateEvent, seat));
+	}
+
+	
+	/*
+	 * METODO CHE CONTROLLA LA LOGICA DI FILTRAGGIO;
+	 */
+	static void checkFiltered(ProgrammaEventi listEvent) {
+		System.out.println("-*-*-*-*- HAI SELEZIONATO LISTA FILTRATA -*-*-*-*-\n");
+		
+		/*
+		 * VERIFICA DELLA VALIDITA' DEGLI INPUT DATA;
+		 * INPUT DATA EVENTO;		
+		 */
+		boolean flagValidationDateFiltr = false;
+		Calendar dateEventFiltr = new GregorianCalendar();
+		
+		
+		//INPUT PER INSERIRE NUOVO PARAMETRO;
+		Scanner inputEventFiltr = new Scanner(System.in);
+		
+		do {
+				
+				try {
+					
+					flagValidationDateFiltr = true;
+					//NON ACCETTA VALORI DEL GIORNO E MESE NON ESISTENTI NEL CALENDARIO;
+					dateEventFiltr.setLenient(false);
+					
+					//INPUT GIORNO EVENTO;
+					System.out.println("- INSERISCI IL GIORNO DEL NUOVO EVENTO: ");
+					int day = inputEventFiltr.nextInt();
+					
+					//INPUT MESE EVENTO;
+					System.out.println("- INSERISCI IL MESE DEL NUOVO EVENTO: ");
+					int month = inputEventFiltr.nextInt();
+					
+					//INPUT ANNO EVENTO
+					System.out.println("- INSERISCI L'ANNO DEL NUOVO EVENTO: ");
+					int year = inputEventFiltr.nextInt();
+					
+					dateEventFiltr.set(year, month, day);
+					dateEventFiltr.getTime();
+					
+				}catch(ArrayIndexOutOfBoundsException | IllegalArgumentException error) {
+					flagValidationDateFiltr = false;	
+					System.out.println("- INSERISCI UNA DATA VALIDA!!! \n");
+			}
+		
+		}while(flagValidationDateFiltr != true);
+			System.out.println("- DATA INSERITA CORRETTAMENTE \n");
+			
+		ArrayList<Evento> listEventFiltr = listEvent.getEventsCalendar(dateEventFiltr);
+		System.out.println("- LISTA FILTRATA ---> \n" + listEventFiltr);
 	}
 }
