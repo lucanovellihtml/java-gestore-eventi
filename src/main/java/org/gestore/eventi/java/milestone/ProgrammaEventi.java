@@ -21,7 +21,13 @@ public class ProgrammaEventi {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
+	
+	
+	public String getTitle() {
+		return this.title;
+	}
+	
+	
 	public void setListEvents(ArrayList<Evento> listEvents) {
 		this.listEvents = listEvents;
 	}
@@ -55,7 +61,13 @@ public class ProgrammaEventi {
 		
 		for(Evento events : this.listEvents) {
 			System.out.println("- STO ANALIZZANDO L'EVENTO...");
+			events.getDate().set(Calendar.HOUR_OF_DAY, 0);
+			events.getDate().set(Calendar.MINUTE, 0);
+			events.getDate().set(Calendar.SECOND, 0);
+			events.getDate().set(Calendar.MILLISECOND, 0);
+			
 			System.out.println("- DATA EVENTO ---> " + events.dataBeautifier());
+			
 			if(events.getDate().equals(date)) {
 				listEventsCalendar.add(events);
 				System.out.println("- L'EVENTO HA LA STESSA DATA RICHIESTA, EVENTO AGGIUNTO ALLA LISTA\n");
