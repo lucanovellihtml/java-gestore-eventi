@@ -3,6 +3,7 @@ package org.gestore.eventi.java.milestone;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 public class ProgrammaEventi {
@@ -81,6 +82,7 @@ public class ProgrammaEventi {
 	 */
 	public void emptyList() {
 		
+		//CONTROLLA SE LA LISTA NON SIA VUOTA;
 		if(this.getLengthEvents() > 0) {
 			System.out.println("- STO SVUOTANDO LA LISTA...");
 			this.listEvents.clear();
@@ -106,6 +108,48 @@ public class ProgrammaEventi {
 		for(int i = 0; i < this.listEvents.size(); i++) {
 			System.out.println("- SCELTA ---> " + i + "\n - EVENTO ---> " + this.listEvents.get(i) + "\n");
 		}		
+	}
+	
+	
+	/*
+	 * METODO CHE RESTITUISCE IL TITOLO DEL LISTA E GLI EVENTI ORDINATI PER DATA;
+	 * VIENE CREATO UN ARRAYLIST, CHE SARA' COPIA DELLA LISTA ORIGINALE, PER AGIRCI SOPRA;
+	 * VIENE CREATA LA LOGICA DEL BUBBLE SORT;
+	 * VIENE VALORIZZATA UNA STRINGA CON LA SOMMA DI TUTTI GLI EVENTI ORDINATI PER DATA;
+	 */
+	public String getStringEventDate() {
+		
+		String dateString = "";
+		ArrayList<Evento> arrayProgrammEvents = new ArrayList<Evento>();
+		Evento temp;
+		
+		//CREAZIONE COPIA LISTA;
+		for(Evento event : this.listEvents) {
+			arrayProgrammEvents.add(event);
+		}
+		
+		//CHECK BUBBLE SORT;
+		for (int i = 0; i < this.listEvents.size(); i++) {
+			//System.out.println("ANALISI ---> " + i +"\n");
+			for (int j = 1; j < this.listEvents.size(); j++) {
+				   //System.out.println("DATA DA ANALIZZARE:" + this.listEvents.get(j - 1).dataBeautifier() + " con " + this.listEvents.get(j).dataBeautifier());
+				   if (arrayProgrammEvents.get(j - 1).getDate().compareTo(arrayProgrammEvents.get(j).getDate()) < 0) {
+						//System.out.println("SI'");
+						temp = arrayProgrammEvents.get(j - 1);
+		                arrayProgrammEvents.set(j - 1, arrayProgrammEvents.get(j));
+		                arrayProgrammEvents.set(j, temp);	
+				   }
+			}
+	
+		}
+		
+		//VALORIZZAZIONE VARIABILE STRING CON GLI EVENTI ORDINATI;
+		for(Evento event : arrayProgrammEvents) {
+			dateString += "- " + event;
+		}
+		
+		return dateString;
+		
 	}
 	
 	

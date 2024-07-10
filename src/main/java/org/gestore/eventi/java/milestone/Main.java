@@ -84,6 +84,12 @@ public class Main {
 						System.out.println("-*-*-*-*- HAI SELEZIONATO STAMPALISTA -*-*-*-*-\n");
 						System.out.println("- LISTA ---> \n" + listEvent.toString());
 						break;
+					
+					
+					case 6:
+						System.out.println("-*-*-*-*- HAI SELEZIONATO RIORDINA LISTA -*-*-*-*-\n");
+						System.out.println(listEvent.getStringEventDate());
+						break;
 						
 					
 					case 7:	
