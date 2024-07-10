@@ -2,6 +2,7 @@ package org.gestore.eventi.java.milestone;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.Scanner;
@@ -54,7 +55,7 @@ public class Main {
 				int chooseAddInput;
 				do {
 				
-					System.out.println("- INSERISCI [1]AGGIUNGI EVENTO - [2]LISTA FILTRATA - [3]NUMERO LISTA EVENTI - [4]SVUOTA LISTA - [5]STAMPA LISTA - [6]RIORDINA LISTA - [7]ESCI: ");
+					System.out.println("- INSERISCI [1]AGGIUNGI EVENTO - [2]LISTA FILTRATA - [3]NUMERO LISTA EVENTI - [4]SVUOTA LISTA - [5]STAMPA LISTA - [6]RIORDINA LISTA - [7]ESCI -[8]AGGIUNGI CONCERTO: ");
 					chooseAddInput = chooseAdd.nextInt();
 					
 					switch(chooseAddInput){
@@ -97,6 +98,10 @@ public class Main {
 						System.out.println("- METODO AGGIUNGI CHIUSO\n");
 						break;
 						
+						
+					case 8:
+						checkAddedConcert(listEvent);
+						break;
 						
 				 default:
 					 System.out.println("- INSERISCI UNA SCELTA VALIDA!!!");
@@ -342,6 +347,114 @@ public class Main {
 		listEvent.addEvent(new Evento(title, dateEvent, seat));
 	}
 
+	
+	/*
+	 * METODO CHE CONTROLLA LA LOGICA DI AGGIUNTA CONCERTO;
+	 */
+	static void checkAddedConcert(ProgrammaEventi listEvent) {
+		System.out.println("-*-*-*-*- HAI SELEZIONATO AGGIUNGI CONCERTO -*-*-*-*-\n");
+		
+		//PARAMETRI OGGETTO CONCERTO
+		Calendar dateEvent = new GregorianCalendar();
+		int seat;
+		String title;
+		double price;
+		
+		
+		//INPUT PER INSERIRE NUOVO PARAMETRO;
+		Scanner inputEvent = new Scanner(System.in);
+		
+		
+		//INPUT TITOLO CONCERTO;
+		System.out.println("- INSERISCI IL TITOLO DEL NUOVO CONCERTO: ");
+		title = inputEvent.nextLine();
+			
+		
+		/*
+		 * VERIFICA DELLA VALIDITA' DEGLI INPUT DATA;
+		 * INPUT DATA E ORARIO CONCERTO;		
+		 */
+		boolean flagValidationDate = false;
+		
+		do {
+				
+				try {
+					
+					flagValidationDate = true;
+					//NON ACCETTA VALORI DEL GIORNO E MESE NON ESISTENTI NEL CALENDARIO;
+					dateEvent.setLenient(false);
+					
+					//INPUT GIORNO CONCERTO;
+					System.out.println("- INSERISCI IL GIORNO DEL NUOVO CONCERTO: ");
+					int day = inputEvent.nextInt();
+					
+					//INPUT MESE CONCERTO;
+					System.out.println("- INSERISCI IL MESE DEL NUOVO CONCERTO: ");
+					int month = inputEvent.nextInt();
+					
+					//INPUT ANNO CONCERTO;
+					System.out.println("- INSERISCI L'ANNO DEL NUOVO CONCERTO: ");
+					int year = inputEvent.nextInt();
+					
+					//INPUT ORA CONCERTO;
+					System.out.println("- INSERISCI L'ORA DEL NUOVO CONCERTO: ");
+					int hour = inputEvent.nextInt();
+					
+					//INPUT MINUTO CONCERTO;
+					System.out.println("- INSERISCI IL MINUTO DEL NUOVO CONCERTO: ");
+					int minute = inputEvent.nextInt();
+
+					//INPUT SECONDI CONCERTO;
+					System.out.println("- INSERISCI I SECONDI DEL NUOVO CONCERTO: ");
+					int second = inputEvent.nextInt();
+					
+					dateEvent.set(year, month, day, hour, minute, second);
+					dateEvent.getTime();
+					
+				}catch(ArrayIndexOutOfBoundsException | IllegalArgumentException error) {
+					flagValidationDate = false;	
+					System.out.println("- INSERISCI UNA DATA VALIDA!!! \n");
+			}
+		
+		}while(flagValidationDate != true);
+			System.out.println("- DATA INSERITA CORRETTAMENTE \n");
+	
+		
+		/*
+		 * VERIFICA DELLA VALIDITA' DELL'INPUT POSTI TOTALI;
+		 * INPUT POSTI TOTALI CONCERTO;	
+		 */		
+		do {
+			
+			System.out.println("- INSERISCI IL NUMERO DEI POSTI TOTALI VALIDO!!! \n");
+			System.out.println("- INSERISCI I POSTI TOTALI DEL NUOVO CONCERTO: ");
+			seat = inputEvent.nextInt();
+			
+		}while(seat < 0);
+			System.out.println("- INPUT POSTI TOTALI INSERITO CORRETTAMENTE \n");
+		
+			
+		/*
+		 * VERIFICA DELLA VALIDITA' DELL'INPUT PREZZO;
+		 * INPUT PREZZO CONCERTO;	
+		 */		
+		do {
+			
+			System.out.println("- INSERISCI IL IL PREZZO VALIDO!!! \n");
+			System.out.println("- INSERISCI IL PREZZO DEL NUOVO CONCERTO: ");
+			price = inputEvent.nextDouble();
+			
+		}while(price < 0);
+			System.out.println("- INPUT PREZZO INSERITO CORRETTAMENTE \n");
+			
+			
+		//CREAZIONE OGGETTO EVENTO
+		System.out.println("- INSERIMENTO DEL CONCERTO AVVENUTO CORRETTAMENTE \n");
+		Concerto concert = new Concerto(title, dateEvent, seat, dateEvent.getTime() ,price);
+		System.out.print(concert.toString());
+		listEvent.addEvent(concert);
+	}
+	
 	
 	/*
 	 * METODO CHE CONTROLLA LA LOGICA DI FILTRAGGIO;
