@@ -1,25 +1,26 @@
 package org.gestore.eventi.java.milestone;
 
+import java.util.Date;
 import java.util.Calendar;
 import java.util.Locale;
 
 public class Concerto extends Evento{
 
-	protected Calendar time;
+	protected Date time;
 	protected double price;
 	
-	public Concerto(String title, Calendar date, int seatsTotal, Calendar time, double price) {
+	public Concerto(String title, Calendar date, int seatsTotal, Date time, double price) {
 		super(title, date, seatsTotal);
 		time = this.time;
 		price = this.price;
 	}
 
 	// METODI SETTER AND GETTER;
-	public Calendar getTime() {
+	public Date getTime() {
 		return time;
 	}
 
-	public void setTime(Calendar time) {
+	public void setTime(Date time) {
 		this.time = time;
 	}
 
