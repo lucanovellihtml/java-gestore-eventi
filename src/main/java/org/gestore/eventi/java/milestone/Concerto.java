@@ -11,8 +11,8 @@ public class Concerto extends Evento{
 	
 	public Concerto(String title, Calendar date, int seatsTotal, Date time, double price) {
 		super(title, date, seatsTotal);
-		time = this.time;
-		price = this.price;
+		this.time = time;
+		this.price = price;
 	}
 
 	// METODI SETTER AND GETTER;
