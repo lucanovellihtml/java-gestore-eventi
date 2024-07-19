@@ -3,7 +3,6 @@ package org.gestore.eventi.java.milestone;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 
 public class ProgrammaEventi {
