@@ -59,7 +59,7 @@ public class Concerto extends Evento{
 	
 	@Override
 	public String toString() {
-		return this.dataBeautifier() + " - " + this.title + " - " + this.priceBeautifier() + "\n";
+		return this.dataBeautifier() + " - " + this.title + " - " + this.priceBeautifier();
 	}
 	
 	

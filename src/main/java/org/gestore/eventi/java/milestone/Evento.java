@@ -136,7 +136,7 @@ public class Evento {
 	
 	@Override
 	public String toString() {
-		return this.dataBeautifier() + " - " + this.title + "\n";
+		return this.dataBeautifier() + " - " + this.title;
 	}
 	
 }

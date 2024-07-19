@@ -55,7 +55,7 @@ public class Main {
 				int chooseAddInput;
 				do {
 				
-					System.out.println("- INSERISCI [1]AGGIUNGI EVENTO - [2]LISTA FILTRATA - [3]NUMERO LISTA EVENTI - [4]SVUOTA LISTA - [5]STAMPA LISTA - [6]RIORDINA LISTA - [7]ESCI -[8]AGGIUNGI CONCERTO: ");
+					System.out.println("- INSERISCI [1]AGGIUNGI EVENTO - [2]LISTA FILTRATA - [3]NUMERO LISTA EVENTI - [4]SVUOTA LISTA - [5]STAMPA LISTA - [6]RIORDINA LISTA - [7]ESCI - [8]AGGIUNGI CONCERTO: ");
 					chooseAddInput = chooseAdd.nextInt();
 					
 					switch(chooseAddInput){
@@ -83,7 +83,7 @@ public class Main {
 						
 					case 5:
 						System.out.println("-*-*-*-*- HAI SELEZIONATO STAMPALISTA -*-*-*-*-\n");
-						System.out.println("- LISTA ---> \n" + listEvent.toString());
+						System.out.println("- LISTA ---> " + listEvent.toString() + "\n");
 						break;
 					
 					
@@ -343,7 +343,7 @@ public class Main {
 		//CREAZIONE OGGETTO EVENTO
 		System.out.println("- INSERIMENTO DELL'EVENTO AVVENUTO CORRETTAMENTE \n");
 		Evento event = new Evento(title, dateEvent, seat);
-		System.out.print(event.toString());
+		System.out.print(event.toString() + "\n");
 		listEvent.addEvent(new Evento(title, dateEvent, seat));
 	}
 
@@ -451,7 +451,7 @@ public class Main {
 		//CREAZIONE OGGETTO EVENTO
 		System.out.println("- INSERIMENTO DEL CONCERTO AVVENUTO CORRETTAMENTE \n");
 		Concerto concert = new Concerto(title, dateEvent, seat, dateEvent.getTime() ,price);
-		System.out.print(concert.toString());
+		System.out.println(concert.toString());
 		listEvent.addEvent(concert);
 	}
 	
@@ -505,7 +505,7 @@ public class Main {
 			System.out.println("- DATA INSERITA CORRETTAMENTE \n");
 			
 		ArrayList<Evento> listEventFiltr = listEvent.getEventsCalendar(dateEventFiltr);
-		System.out.println("- LISTA FILTRATA ---> \n" + listEventFiltr.toString());
+		System.out.println("- LISTA FILTRATA --->" + listEventFiltr.toString() + "\n");
 	}
 
 }

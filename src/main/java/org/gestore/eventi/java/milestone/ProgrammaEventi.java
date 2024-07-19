@@ -155,7 +155,7 @@ public class ProgrammaEventi {
 		
 		//VALORIZZAZIONE VARIABILE STRING CON GLI EVENTI ORDINATI;
 		for(Evento event : arrayProgrammEvents) {
-			dateString += "- " + event;
+			dateString += "- " + event + " // ";
 		}
 		
 		return dateString;
