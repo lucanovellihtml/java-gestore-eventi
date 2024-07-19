@@ -48,10 +48,7 @@ public class ProgrammaEventi {
 		
 		ArrayList<Evento> listEventsCalendar = new ArrayList<Evento>();
 		
-		date.set(Calendar.HOUR_OF_DAY, 0);
-		date.set(Calendar.MINUTE, 0);
-		date.set(Calendar.SECOND, 0);
-		date.set(Calendar.MILLISECOND, 0);
+		
 		int day = date.get(Calendar.DATE);
 		String month = date.getDisplayName(Calendar.MONTH, Calendar.LONG_FORMAT, Locale.ITALY);
 		int year = date.get(Calendar.YEAR);
@@ -59,17 +56,18 @@ public class ProgrammaEventi {
 		
 		System.out.println("- DATA FILTRAGGIO ---> " + dateBeautifierInput + "\n");
 		
-		for(Evento events : this.listEvents) {
+		for(Evento event : this.listEvents) {
 			System.out.println("- STO ANALIZZANDO L'EVENTO...");
-			events.getDate().set(Calendar.HOUR_OF_DAY, 0);
-			events.getDate().set(Calendar.MINUTE, 0);
-			events.getDate().set(Calendar.SECOND, 0);
-			events.getDate().set(Calendar.MILLISECOND, 0);
+
+			int dayEvent = event.getDate().get(Calendar.DATE);
+			String monthEvent = event.getDate().getDisplayName(Calendar.MONTH, Calendar.LONG_FORMAT, Locale.ITALY);
+			int yearEvent = event.getDate().get(Calendar.YEAR);
+			String dateBeautifierEvent = dayEvent + " " + monthEvent + " " + yearEvent;
 			
-			System.out.println("- DATA EVENTO ---> " + events.dataBeautifier());
-			
-			if(events.getDate().equals(date)) {
-				listEventsCalendar.add(events);
+			System.out.println("- DATA EVENTO ---> " + dateBeautifierEvent);
+			 
+			if(dateBeautifierEvent.equals(dateBeautifierInput)) {
+				listEventsCalendar.add(event);
 				System.out.println("- L'EVENTO HA LA STESSA DATA RICHIESTA, EVENTO AGGIUNTO ALLA LISTA\n");
 			}
 			else
